@@ -56,7 +56,8 @@
             border-right: 2px solid #B22222;
             position: sticky;
             top: 100px;
-            height: calc(100vh - 100px);
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: calc(100vh - 100px); /* Limit height to viewport minus top offset */
         }
 
         .menu a {
@@ -285,7 +286,7 @@
                 <p>O menu é vertical, fixo (sticky) para acompanhar o scroll, com botões de mesmo tamanho e interações visuais (hover e clique).</p>
                 <p><strong>Prompt:</strong> <code>"Crie um menu vertical em HTML/CSS/JS, à esquerda, com 5 itens (Introdução, O que é um Prompt?, Prompts para Web, Boas Práticas, Exemplos Práticos). Botões de 160px por 40px, bordas vermelhas (#B22222), hover vermelho, clique vermelho escuro (#8B0000). Sticky, 100px abaixo do topo."</code></p>
                 <pre>
-&lt;nav class="menu" style="background: white; padding: 1rem; display: flex; flex-direction: column; width: 200px; border-right: 2px solid #B22222; position: sticky; top: 100px; height: calc(100vh - 100px);"&gt;
+&lt;nav class="menu" style="background: white; padding: 1rem; display: flex; flex-direction: column; width: 200px; border-right: 2px solid #B22222; position: sticky; top: 100px; overflow-y: auto; max-height: calc(100vh - 100px);"&gt;
     &lt;a href="#introducao" style="width: 160px; min-height: 40px; border: 1px solid #B22222; border-radius: 4px; color: #B22222; text-decoration: none; padding: 0.5rem 1rem; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;"&gt;Introdução&lt;/a&gt;
     &lt;!-- Outros itens --&gt;
 &lt;/nav&gt;
@@ -305,13 +306,15 @@ document.querySelectorAll('.menu a').forEach(item =&gt; {
                 <h3>Explicação:</h3>
                 <ul>
                     <li><code>position: sticky</code>: Faz o menu acompanhar o scroll, começando 100px abaixo do topo.</li>
+                    <li><code>overflow-y: auto</code>: Permite rolagem vertical para ver todos os botões.</li>
+                    <li><code>max-height: calc(100vh - 100px)</code>: Limita a altura do menu ao espaço disponível na tela.</li>
                     <li><code>width: 160px; min-height: 40px</code>: Garante botões uniformes.</li>
                     <li><code>transition</code>: Suaviza mudanças de cor no hover e clique.</li>
                     <li>JavaScript: Adiciona a classe <code>clicked</code> ao item selecionado.</li>
                 </ul>
-                <p><strong>Dica:</strong> Clique nos botões no navegador para verificar as interações de hover e clique.</p>
+                <p><strong>Dica:</strong> Role o menu no navegador para confirmar que todos os botões são acessíveis.</p>
                 <div class="visual">
-                    Visual: Diagrama mostrando o menu com cinco botões verticais, destacando o estado normal (borda vermelha #B22222), hover (fundo vermelho #B22222) e clique (fundo vermelho escuro #8B0000).
+                    Visual: Diagrama mostrando o menu com cinco botões verticais, destacando o estado normal (borda vermelha #B22222), hover (fundo vermelho #B22222) e clique (fundo vermelho escuro #8B0000), com uma seta indicando a rolagem vertical.
                 </div>
             </section>
 
@@ -472,11 +475,11 @@ main pre { background-color: #f4f4f4; padding: 1rem; border-radius: 5px; overflo
                     <li><strong>Código Não Funciona:</strong> Verifique a sintaxe, como tags HTML não fechadas ou erros em CSS/JavaScript. Exemplo: Certifique-se de que <code>&lt;/div&gt;</code> está presente para cada <code>&lt;div&gt;</code>.</li>
                     <li><strong>Layout Errado:</strong> Ajuste com prompts específicos, como <code>"Corrija o alinhamento do menu para ficar à esquerda."</code></li>
                     <li><strong>IA Não Entende:</strong> Reformule o prompt com mais detalhes. Exemplo: Em vez de <code>"Melhore o menu"</code>, use <code>"Adicione bordas vermelhas de 1px aos botões do menu."</code></li>
-                    <li><strong>Teste Sempre:</strong> Use a ferramenta de inspeção do navegador (F12) para identificar erros de CSS ou JavaScript.</li>
-                    <li><strong>Exemplo de Correção:</strong> Se o menu não for interativo, adicione o JavaScript correto com <code>"Adicione um script para mudar a cor do botão ao clicar."</code></li>
+                    <li><strong>Teste Sempre:</strong> Use a ferramenta de inspeção do navegador (F12) to identify CSS or JavaScript errors.</li>
+                    <li><strong>Exemplo de Correção:</strong> If the menu isn't scrollable, add <code>"Add overflow-y: auto to the menu."</code></li>
                 </ul>
                 <div class="visual">
-                    Visual: Fluxograma mostrando o processo de solução: "Problema" (ícone de alerta) → "Verificar" (ícone de lupa) → "Ajustar" (ícone de ferramenta) → "Testar" (ícone de monitor).
+                    Visual: Flowchart showing the troubleshooting process: "Problema" (alert icon) → "Verificar" (magnifying glass icon) → "Ajustar" (tool icon) → "Testar" (monitor icon).
                 </div>
             </section>
 
