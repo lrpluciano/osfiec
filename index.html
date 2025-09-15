@@ -3,517 +3,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação: Criando Sites com Prompts de IA</title>
+    <meta name="description" content="Roteiro completo para desenvolvimento de módulos web educacionais. Aprenda a planejar e construir projetos web passo a passo.">
+    <meta name="keywords" content="projeto web, módulo educacional, planejamento, construção, roteiro">
+    <title>Roteiro do Projeto: Passo a Passo do Módulo Web</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos Personalizados -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
         }
-
+        
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
+            line-height: 1.6;
         }
-
-        header {
-            background-color: white;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #B22222;
-            position: fixed;
-            top: 0;
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .gallery-item img {
             width: 100%;
-            z-index: 1000;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-
-        .logo img {
-            height: 60px;
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
-
-        .title {
-            color: #B22222;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .container {
-            display: flex;
-            margin-top: 80px;
-            min-height: calc(100vh - 120px);
-        }
-
-        .menu {
-            background-color: white;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 200px;
-            border-right: 2px solid #B22222;
-            position: sticky;
-            top: 100px;
-            overflow-y: auto; /* Enable vertical scrolling */
-            max-height: calc(100vh - 100px); /* Limit height to viewport minus top offset */
-        }
-
-        .menu a {
-            color: #B22222;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            width: 160px;
-            min-height: 40px;
-            border: 1px solid #B22222;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s, color 0.3s;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-
-        .menu a:hover {
-            background-color: #B22222;
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
             color: white;
-            border-color: #B22222;
+            font-size: 2rem;
         }
-
-        .menu a:active, .menu a.clicked {
-            background-color: #8B0000;
-            color: white;
-            border-color: #8B0000;
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
         }
-
-        main {
-            flex: 1;
-            max-width: 800px;
-            margin: 2rem;
-            padding: 0 1rem;
+        
+        .faq-question {
+            background-color: var(--light-color);
+            padding: 15px 20px;
+            margin: 0;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        main h2 {
-            color: #B22222;
-            margin-bottom: 1rem;
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
         }
-
-        main h3 {
-            color: #B22222;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
+        
+        .faq-item.active .faq-answer {
+            display: block;
         }
-
-        main p {
-            margin-bottom: 1rem;
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
-
-        main ul, main ol {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
-
-        main code {
-            background-color: #f4f4f4;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-3px);
         }
-
-        main pre {
-            background-color: #f4f4f4;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-        }
-
-        main table {
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-            width: 100%;
-        }
-
-        main th, main td {
-            border: 1px solid #B22222;
-            padding: 0.5rem;
-            text-align: left;
-        }
-
-        main th {
-            background-color: #B22222;
-            color: white;
-        }
-
-        .visual {
-            background-color: #f4f4f4;
-            padding: 1rem;
-            border: 1px solid #B22222;
-            border-radius: 5px;
-            margin-bottom: 1rem;
+        
+        .download-section {
+            background-color: var(--light-color);
+            padding: 60px 0;
             text-align: center;
-            font-style: italic;
         }
-
+        
+        .download-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .download-btn:hover {
+            background-color: #c0392b;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
         footer {
-            background-color: #B22222;
+            background-color: var(--dark-color);
             color: white;
+            padding: 40px 0;
             text-align: center;
-            padding: 1rem;
-            width: 100%;
         }
-
-        footer p {
-            font-size: 0.9rem;
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-padding {
+                padding: 50px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://www.fiec.com.br/site/imgs/logo-fiec-vermelho.png" alt="FIEC Logo">
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Roteiro do Projeto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#apresentacao">Apresentação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#descricao">Descrição</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeria">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download">Download</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="title">
-            Apresentação: Criando Sites com Prompts de IA
+    </nav>
+
+    <!-- Página Inicial -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Roteiro do Projeto: Passo a Passo do Módulo Web</h1>
+            <p class="hero-description">
+                Um guia completo para planejar e construir módulos educacionais web. 
+                Transforme suas ideias em experiências de aprendizagem interativas e eficazes.
+            </p>
+            <a href="#descricao" class="btn btn-primary btn-lg mt-4">Conheça o Projeto</a>
         </div>
-    </header>
-    <div class="container">
-        <nav class="menu">
-            <a href="#slide1" onclick="this.classList.add('clicked')">Título</a>
-            <a href="#slide2" onclick="this.classList.add('clicked')">Introdução</a>
-            <a href="#slide3" onclick="this.classList.add('clicked')">O que é um Prompt?</a>
-            <a href="#slide4" onclick="this.classList.add('clicked')">Estrutura do Site</a>
-            <a href="#slide5" onclick="this.classList.add('clicked')">Passo 1: Cabeçalho</a>
-            <a href="#slide6" onclick="this.classList.add('clicked')">Passo 2: Menu</a>
-            <a href="#slide7" onclick="this.classList.add('clicked')">Passo 3: Conteúdo</a>
-            <a href="#slide8" onclick="this.classList.add('clicked')">Passo 4: Rodapé</a>
-            <a href="#slide9" onclick="this.classList.add('clicked')">Boas Práticas</a>
-            <a href="#slide10" onclick="this.classList.add('clicked')">Erros Comuns</a>
-            <a href="#slide11" onclick="this.classList.add('clicked')">Técnicas Avançadas</a>
-            <a href="#slide12" onclick="this.classList.add('clicked')">Análise de Prompt</a>
-            <a href="#slide13" onclick="this.classList.add('clicked')">Atividade Prática</a>
-            <a href="#slide14" onclick="this.classList.add('clicked')">Solução de Problemas</a>
-            <a href="#slide15" onclick="this.classList.add('clicked')">Conclusão</a>
-        </nav>
-        <main>
-            <section id="slide1">
-                <h2>Título</h2>
-                <h3>Criando Sites com Prompts de Inteligência Artificial</h3>
-                <p><strong>Subtítulo:</strong> Guia Prático para Desenvolvimento Web</p>
-                <p><strong>Autor:</strong> Luciano Pereira</p>
-                <p><strong>Data:</strong> 1 de Setembro de 2025</p>
-                <p>Este curso ensina como usar inteligência artificial para criar sites de forma eficiente, combinando prompts claros com ferramentas como HTML, CSS e JavaScript. A apostila fornecida é seu guia prático para replicar o site passo a passo.</p>
-                <div class="visual">
-                    Visual: Logotipo da FIEC centralizado abaixo do título, com fundo branco e borda vermelha (#B22222) ao redor do logo para destacar sua importância.
-                </div>
-            </section>
+    </section>
 
-            <section id="slide2">
-                <h2>Introdução</h2>
-                <p><strong>Objetivo:</strong> Aprender a criar sites utilizando prompts de IA para gerar código HTML, CSS e JavaScript de maneira prática e eficiente.</p>
-                <ul>
-                    <li><strong>Por que usar IA?</strong> A IA, como o Grok da xAI, pode acelerar o desenvolvimento, reduzindo o tempo de codificação e permitindo que iniciantes criem sites profissionais.</li>
-                    <li><strong>O que você vai criar:</strong> Um site educacional com cabeçalho fixo, menu lateral interativo, conteúdo detalhado e rodapé fixo.</li>
-                    <li><strong>Ferramentas necessárias:</strong> Uma IA (ex.: Grok), um editor de texto (ex.: VS Code) e um navegador web (ex.: Chrome).</li>
-                </ul>
-                <p><strong>Benefícios:</strong> Mesmo sem experiência avançada, você pode criar sites funcionais e visualmente atraentes usando prompts bem elaborados.</p>
-                <div class="visual">
-                    Visual: Fluxograma com quatro caixas conectadas por setas: "Prompt" (uma instrução escrita), "IA" (ícone de um cérebro digital), "Código" (trecho de HTML/CSS), e "Site" (esboço de um site com menu e conteúdo).
+    <!-- Seção de Apresentação -->
+    <section id="apresentacao" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Apresentação do Projeto</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Planejamento">
+                                <div class="carousel-caption">
+                                    <h3>Parte 1: A Fase de Planejamento</h3>
+                                    <p>Organize suas ideias e junte todo o material necessário antes de começar a construir.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Construção">
+                                <div class="carousel-caption">
+                                    <h3>Parte 2: A Fase de Construção</h3>
+                                    <p>Transforme seu planejamento em uma página web funcional e interativa.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Resultado">
+                                <div class="carousel-caption">
+                                    <h3>Resultado Final</h3>
+                                    <p>Um módulo web educacional completo com texto, mídias e atividades interativas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
                 </div>
-            </section>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Planejamento Estruturado</h4>
+                        <p>Organize suas ideias e defina a estrutura do seu módulo antes de começar a construir.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Construção Passo a Passo</h4>
+                        <p>Siga um guia detalhado para transformar seu planejamento em uma página web funcional.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Aprendizagem Eficaz</h4>
+                        <p>Crie experiências educacionais que engajem e facilitem a compreensão do conteúdo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="slide3">
-                <h2>O que é um Prompt?</h2>
-                <p>Um <strong>prompt</strong> é uma instrução clara e específica fornecida à IA para obter uma resposta útil, como um trecho de código ou um design de site.</p>
-                <h3>Características de um Bom Prompt:</h3>
-                <ul>
-                    <li><strong>Clareza:</strong> Use linguagem direta, evitando termos vagos como "bonito". Exemplo: <code>"Use fundo branco e texto vermelho."</code></li>
-                    <li><strong>Contexto:</strong> Explique o objetivo, como o tipo de site (portfólio, blog, etc.). Exemplo: <code>"Crie um site educacional."</code></li>
-                    <li><strong>Especificidade:</strong> Detalhe layout, cores, e funcionalidades. Exemplo: <code>"Inclua um menu vertical com botões de 160px por 40px."</code></li>
-                </ul>
-                <p><strong>Exemplo de Prompt:</strong> <code>"Crie um site em HTML/CSS com um menu vertical à esquerda, cores vermelhas (#B22222), e um cabeçalho fixo com logo."</code></p>
-                <p><strong>Dica:</strong> Pense no prompt como uma receita: cada ingrediente (detalhe) deve ser claro para garantir o resultado esperado.</p>
-                <div class="visual">
-                    Visual: Diagrama circular com "Prompt" no centro e três setas apontando para "Clareza" (ícone de lâmpada), "Contexto" (ícone de alvo), e "Especificidade" (ícone de lista detalhada).
+    <!-- Descrição Detalhada -->
+    <section id="descricao" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Descrição Detalhada do Projeto</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Visão Geral</h3>
+                    <p>Este projeto é dividido em duas partes fundamentais: planejamento e construção. O objetivo é guiar os alunos na criação de módulos web educacionais completos, desde a concepção da ideia até a entrega final.</p>
+                    
+                    <h3>Objetivos</h3>
+                    <ul>
+                        <li>Desenvolver habilidades de planejamento de conteúdo educacional</li>
+                        <li>Aprender a estruturar informações de forma lógica e atraente</li>
+                        <li>Implementar elementos interativos para engajar o público</li>
+                        <li>Integrar diferentes tipos de mídia em um projeto web</li>
+                    </ul>
                 </div>
-            </section>
+                <div class="col-lg-6">
+                    <h3>Metodologia</h3>
+                    <p>O projeto segue uma abordagem passo a passo, dividida em aulas que progressivamente constroem as habilidades necessárias:</p>
+                    
+                    <div class="accordion" id="projectAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Parte 1: Fase de Planejamento
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#projectAccordion">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>Aula 1:</strong> A Ideia - Escolha do tema, definição do público-alvo e rascunho da estrutura</li>
+                                        <li><strong>Aula 2:</strong> A Caçada de Conteúdo - Encontrar vídeos, imagens e links relevantes</li>
+                                        <li><strong>Aula 3:</strong> O Blueprint da Página - Planejar onde cada elemento será posicionado</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Parte 2: Fase de Construção
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>Aula 4:</strong> A Fundação - Criar a estrutura básica e adicionar o texto</li>
+                                        <li><strong>Aula 5:</strong> A Interatividade - Adicionar mídias e criar atividades interativas</li>
+                                        <li><strong>Aula 6:</strong> O Polimento e a Entrega - Revisão final e preparação para entrega</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h3>Resultados Esperados</h3>
+                    <p>Ao final do projeto, os alunos terão desenvolvido um módulo web completo contendo:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+                                <div>
+                                    <h5>Conteúdo Estruturado</h5>
+                                    <p>Texto organizado em seções lógicas com introdução, desenvolvimento e conclusão.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+                                <div>
+                                    <h5>Elementos Multimídia</h5>
+                                    <p>Integração de vídeos, imagens e links externos relevantes ao tema.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+                                <div>
+                                    <h5>Atividades Interativas</h5>
+                                    <p>Quiz ou outra atividade que permita ao usuário testar seu conhecimento.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+                                <div>
+                                    <h5>Design Responsivo</h5>
+                                    <p>Layout que se adapte a diferentes dispositivos e tamanhos de tela.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="slide4">
-                <h2>Estrutura do Site</h2>
-                <p>O site que você construirá possui os seguintes componentes, todos projetados para serem funcionais e visualmente consistentes:</p>
-                <ul>
-                    <li><strong>Cabeçalho Fixo:</strong> Contém um logo à esquerda e um título à direita, com fundo branco e borda inferior vermelha (#B22222).</li>
-                    <li><strong>Menu Lateral:</strong> Vertical, fixo (sticky), com botões de mesmo tamanho (160px x 40px) e interações de hover e clique.</li>
-                    <li><strong>Conteúdo Principal:</strong> Cinco seções à direita, com textos, listas e exemplos de código sobre prompts para IA.</li>
-                    <li><strong>Rodapé Fixo:</strong> Fundo vermelho (#B22222) com texto branco de direitos autorais.</li>
-                </ul>
-                <p><strong>Por que essa estrutura?</strong> Ela é simples, organizada e ideal para iniciantes aprenderem a combinar layout e funcionalidade.</p>
-                <div class="visual">
-                    Visual: Wireframe retangular do site, mostrando o cabeçalho no topo (com logo e título), menu à esquerda (cinco botões), conteúdo à direita (seções com títulos e texto), e rodapé na base (texto centralizado).
+    <!-- Galeria de Imagens -->
+    <section id="galeria" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Galeria de Imagens</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Planejamento">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
                 </div>
-            </section>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Desenvolvimento">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Resultado">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Estrutura">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Construção">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Finalização">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="slide5">
-                <h2>Passo 1: Criando o Cabeçalho</h2>
-                <p>O cabeçalho é fixo no topo, com o logo da FIEC à esquerda e o título à direita. Ele usa a cor vermelha (#B22222) para consistência visual.</p>
-                <p><strong>Prompt:</strong> <code>"Crie um cabeçalho em HTML/CSS com logo à esquerda, título à direita, fundo branco, borda vermelha (#B22222). O logo está em https://www.fiec.com.br/site/imgs/logo-fiec-vermelho.png. Fixo no topo."</code></p>
-                <pre>
-&lt;header style="background: white; padding: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #B22222; position: fixed; top: 0; width: 100%; z-index: 1000;"&gt;
-    &lt;div class="logo"&gt;
-        &lt;img src="https://www.fiec.com.br/site/imgs/logo-fiec-vermelho.png" alt="FIEC Logo" style="height: 60px;"&gt;
-    &lt;/div&gt;
-    &lt;div class="title" style="color: #B22222; font-size: 1.5rem; font-weight: bold;"&gt;
-        Desenvolvendo Prompts para IA no Desenvolvimento Web
-    &lt;/div&gt;
-&lt;/header&gt;
-                </pre>
-                <h3>Explicação:</h3>
-                <ul>
-                    <li><code>position: fixed</code>: Mantém o cabeçalho no topo ao rolar a página.</li>
-                    <li><code>display: flex</code>: Alinha o logo e o título horizontalmente.</li>
-                    <li><code>z-index: 1000</code>: Garante que o cabeçalho fique acima de outros elementos.</li>
-                </ul>
-                <p><strong>Dica:</strong> Teste o código em um navegador para verificar se o cabeçalho permanece fixo e visível.</p>
-                <div class="visual">
-                    Visual: Captura de tela do cabeçalho, destacando o logo à esquerda, título à direita, fundo branco e borda vermelha (#B22222).
+    <!-- FAQs -->
+    <section id="faq" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            Preciso ter conhecimentos prévios de programação para fazer este projeto?
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="faq-answer">
+                            <p>Não necessariamente. O roteiro foi desenvolvido para ser acessível mesmo para iniciantes. Se você estiver usando uma plataforma de construção de sites que não requer código, como WordPress, Wix ou Google Sites, poderá seguir todas as etapas sem precisar programar. No entanto, conhecimentos básicos de HTML e CSS podem ser úteis para personalizações mais avançadas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            Quanto tempo leva para completar o projeto?
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="faq-answer">
+                            <p>O tempo necessário pode variar dependendo da sua experiência e da complexidade do tema escolhido. Em média, cada aula pode levar de 2 a 4 horas para ser concluída, o que resultaria em um total de aproximadamente 12 a 18 horas para todo o projeto. Recomendamos dedicar pelo menos uma semana para desenvolver todas as etapas com calma e atenção aos detalhes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            Posso escolher qualquer tema para o meu módulo?
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="faq-answer">
+                            <p>Sim! Você pode escolher qualquer tema que tenha interesse. A única recomendação é que o tema seja específico o suficiente para ser abordado de forma completa em um módulo único. Por exemplo, em vez de escolher um tema amplo como "ciências", opte por algo mais específico como "como os eclipses solares ocorrem" ou "o processo de fotossíntese nas plantas".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            Como avaliar o projeto final?
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="faq-answer">
+                            <p>O projeto final será avaliado com base em vários critérios: organização do conteúdo, qualidade das informações apresentadas, integração adequada de elementos multimídia, funcionalidade das atividades interativas, design geral e usabilidade do módulo. O relatório de conclusão também é uma parte importante da avaliação, pois demonstra sua reflexão sobre o processo de aprendizagem e os desafios superados.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">
+                            Posso trabalhar em equipe neste projeto?
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="faq-answer">
+                            <p>Isso depende das diretrizes do seu professor. O roteiro foi originalmente desenvolvido para projetos individuais, mas muitos de seus elementos podem ser adaptados para trabalho em equipe. Se for permitido, recomendamos dividir as tarefas de forma equilibrada, garantindo que todos os membros participem tanto da fase de planejamento quanto da construção.</p>
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <section id="slide6">
-                <h2>Passo 2: Criando o Menu Lateral</h2>
-                <p>O menu é vertical, fixo (sticky) para acompanhar o scroll, com botões de mesmo tamanho e interações visuais (hover e clique).</p>
-                <p><strong>Prompt:</strong> <code>"Crie um menu vertical em HTML/CSS/JS, à esquerda, com 5 itens (Introdução, O que é um Prompt?, Prompts para Web, Boas Práticas, Exemplos Práticos). Botões de 160px por 40px, bordas vermelhas (#B22222), hover vermelho, clique vermelho escuro (#8B0000). Sticky, 100px abaixo do topo."</code></p>
-                <pre>
-&lt;nav class="menu" style="background: white; padding: 1rem; display: flex; flex-direction: column; width: 200px; border-right: 2px solid #B22222; position: sticky; top: 100px; overflow-y: auto; max-height: calc(100vh - 100px);"&gt;
-    &lt;a href="#introducao" style="width: 160px; min-height: 40px; border: 1px solid #B22222; border-radius: 4px; color: #B22222; text-decoration: none; padding: 0.5rem 1rem; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;"&gt;Introdução&lt;/a&gt;
-    &lt;!-- Outros itens --&gt;
-&lt;/nav&gt;
-&lt;style&gt;
-.menu a:hover { background-color: #B22222; color: white; border-color: #B22222; }
-.menu a:active, .menu a.clicked { background-color: #8B0000; color: white; border-color: #8B0000; }
-&lt;/style&gt;
-&lt;script&gt;
-document.querySelectorAll('.menu a').forEach(item =&gt; {
-    item.addEventListener('click', () =&gt; {
-        document.querySelectorAll('.menu a').forEach(link =&gt; link.classList.remove('clicked'));
-        item.classList.add('clicked');
-    });
-});
-&lt;/script&gt;
-                </pre>
-                <h3>Explicação:</h3>
-                <ul>
-                    <li><code>position: sticky</code>: Faz o menu acompanhar o scroll, começando 100px abaixo do topo.</li>
-                    <li><code>overflow-y: auto</code>: Permite rolagem vertical para ver todos os botões.</li>
-                    <li><code>max-height: calc(100vh - 100px)</code>: Limita a altura do menu ao espaço disponível na tela.</li>
-                    <li><code>width: 160px; min-height: 40px</code>: Garante botões uniformes.</li>
-                    <li><code>transition</code>: Suaviza mudanças de cor no hover e clique.</li>
-                    <li>JavaScript: Adiciona a classe <code>clicked</code> ao item selecionado.</li>
-                </ul>
-                <p><strong>Dica:</strong> Role o menu no navegador para confirmar que todos os botões são acessíveis.</p>
-                <div class="visual">
-                    Visual: Diagrama mostrando o menu com cinco botões verticais, destacando o estado normal (borda vermelha #B22222), hover (fundo vermelho #B22222) e clique (fundo vermelho escuro #8B0000), com uma seta indicando a rolagem vertical.
-                </div>
-            </section>
+    <!-- Seção de Download -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2 class="section-title">Baixe o Roteiro Completo</h2>
+            <p>Obtenha o roteiro do projeto em formato PDF para consulta offline ou para compartilhar com outros.</p>
+            <a href="https://drive.google.com/file/d/1r-CG4EKhxjRmm1ChvCJc5WeCY3boH5Or/view?usp=drive_link" target="_blank" class="download-btn">
+                <i class="fas fa-download me-2"></i> Baixar Roteiro
+            </a>
+        </div>
+    </section>
 
-            <section id="slide7">
-                <h2>Passo 3: Criando o Conteúdo Principal</h2>
-                <p>O conteúdo principal contém cinco seções com textos, listas e exemplos de código, posicionados à direita do menu, com largura máxima de 800px.</p>
-                <p><strong>Prompt:</strong> <code>"Crie 5 seções em HTML/CSS à direita do menu, com títulos vermelhos (#B22222), parágrafos, listas e exemplos de código. Máximo 800px de largura."</code></p>
-                <pre>
-&lt;main style="flex: 1; max-width: 800px; margin: 2rem; padding: 0 1rem;"&gt;
-    &lt;section id="introducao"&gt;
-        &lt;h2 style="color: #B22222;"&gt;Introdução&lt;/h2&gt;
-        &lt;p&gt;Com o avanço da IA, ferramentas como Grok transformam o desenvolvimento web.&lt;/p&gt;
-        &lt;ul&gt;
-            &lt;li&gt;Estruturar prompts claros.&lt;/li&gt;
-            &lt;li&gt;Aplicar HTML, CSS, JS.&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/section&gt;
-    &lt;!-- Outras seções --&gt;
-&lt;/main&gt;
-&lt;style&gt;
-main h3 { color: #B22222; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-main p { margin-bottom: 1rem; }
-main code { background-color: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 3px; font-family: 'Courier New', Courier, monospace; }
-main pre { background-color: #f4f4f4; padding: 1rem; border-radius: 5px; overflow-x: auto; margin-bottom: 1rem; }
-&lt;/style&gt;
-                </pre>
-                <h3>Explicação:</h3>
-                <ul>
-                    <li><code>flex: 1</code>: Faz o conteúdo ocupar o espaço restante à direita do menu.</li>
-                    <li><code>max-width: 800px</code>: Limita a largura para facilitar a leitura.</li>
-                    <li><code>pre</code> e <code>code</code>: Estilizam exemplos de código para clareza.</li>
-                </ul>
-                <p><strong>Dica:</strong> Copie o código para um editor e visualize no navegador para garantir que as seções aparecem corretamente.</p>
-                <div class="visual">
-                    Visual: Infográfico mostrando o layout do conteúdo com cinco seções, cada uma com um título vermelho (#B22222), parágrafos, listas e blocos de código destacados em caixas cinzas.
-                </div>
-            </section>
-
-            <section id="slide8">
-                <h2>Passo 4: Criando o Rodapé</h2>
-                <p>O rodapé é fixo na base, com fundo vermelho (#B22222) e texto branco, exibindo os direitos autorais.</p>
-                <p><strong>Prompt:</strong> <code>"Crie um rodapé fixo em HTML/CSS com fundo vermelho (#B22222), texto branco, mensagem '© 2025 Luciano Pereira. Todos os direitos reservados.'"</code></p>
-                <pre>
-&lt;footer style="background-color: #B22222; color: white; text-align: center; padding: 1rem; width: 100%;"&gt;
-    &lt;p style="font-size: 0.9rem;"&gt;&copy; 2025 Luciano Pereira. Todos os direitos reservados.&lt;/p&gt;
-&lt;/footer&gt;
-                </pre>
-                <h3>Explicação:</h3>
-                <ul>
-                    <li><code>width: 100%</code>: Garante que o rodapé ocupe toda a largura.</li>
-                    <li><code>background-color: #B22222</code>: Mantém a consistência com a paleta do site.</li>
-                    <li><code>text-align: center</code>: Centraliza o texto para estética.</li>
-                </ul>
-                <p><strong>Dica:</strong> Verifique se o rodapé aparece na base da página e não sobrepõe o conteúdo.</p>
-                <div class="visual">
-                    Visual: Captura de tela do rodapé, mostrando o fundo vermelho (#B22222) e o texto branco centralizado.
-                </div>
-            </section>
-
-            <section id="slide9">
-                <h2>Boas Práticas para Prompts</h2>
-                <p>Para criar prompts eficazes, siga estas práticas para obter os melhores resultados da IA:</p>
-                <ul>
-                    <li><strong>Especifique Tecnologias:</strong> Indique claramente HTML, CSS, JavaScript, etc. Exemplo: <code>"Use apenas HTML e CSS."</code></li>
-                    <li><strong>Detalhe o Layout:</strong> Descreva a posição dos elementos. Exemplo: <code>"Menu vertical à esquerda, conteúdo à direita."</code></li>
-                    <li><strong>Inclua Referências:</strong> Forneça links para logos ou sites inspiradores. Exemplo: <code>"Baseie-se no logo em https://www.fiec.com.br/site/imgs/logo-fiec-vermelho.png."</code></li>
-                    <li><strong>Itere:</strong> Ajuste o resultado com prompts específicos. Exemplo: <code>"Adicione bordas vermelhas aos botões do menu."</code></li>
-                    <li><strong>Teste Sempre:</strong> Valide o código no navegador para garantir funcionalidade.</li>
-                </ul>
-                <p><strong>Por que isso importa?</strong> Um prompt bem elaborado economiza tempo e reduz erros, produzindo resultados mais próximos do esperado.</p>
-                <div class="visual">
-                    Visual: Infográfico de lista de verificação com ícones: uma engrenagem para "Especifique", um mapa para "Detalhe", um link para "Refira", um ciclo para "Itere" e um monitor para "Teste".
-                </div>
-            </section>
-
-            <section id="slide10">
-                <h2>Erros Comuns a Evitar</h2>
-                <p>Evite os seguintes erros ao usar prompts para garantir resultados úteis:</p>
-                <ul>
-                    <li><strong>Prompts Vagos:</strong> Ex.: <code>"Crie um site bonito."</code> <br> <strong>Solução:</strong> <code>"Crie um site em HTML/CSS com menu vertical e cores #B22222."</code></li>
-                    <li><strong>Falta de Iteração:</strong> Não revisar o código gerado. <br> <strong>Solução:</strong> Peça ajustes, como <code>"Corrija o alinhamento do menu."</code></li>
-                    <li><strong>Ignorar Testes:</strong> Não validar o código no navegador. <br> <strong>Solução:</strong> Sempre teste cada parte do código para verificar erros.</li>
-                    <li><strong>Excesso de Ambiguidade:</strong> Não especificar detalhes visuais ou funcionais. <br> <strong>Solução:</strong> Inclua cores, tamanhos e interações específicas.</li>
-                </ul>
-                <div class="visual">
-                    Visual: Tabela comparando prompts "Errado" e "Correto":
-                    <table>
-                        <tr><th>Errado</th><th>Correto</th></tr>
-                        <tr><td>"Crie um site"</td><td>"Crie HTML/CSS com menu vertical"</td></tr>
-                        <tr><td>"Adicione algo"</td><td>"Adicione bordas vermelhas aos botões"</td></tr>
-                        <tr><td>"Faça bonito"</td><td>"Use paleta #B22222 com fundo branco"</td></tr>
-                    </table>
-                </div>
-            </section>
-
-            <section id="slide11">
-                <h2>Técnicas Avançadas de Prompts</h2>
-                <p>Para melhorar ainda mais seus prompts, experimente estas técnicas avançadas:</p>
-                <ul>
-                    <li><strong>Divida Tarefas:</strong> Peça o código em etapas (ex.: HTML primeiro, depois CSS). Exemplo: <code>"Crie a estrutura HTML, depois adicione CSS."</code></li>
-                    <li><strong>Use Exemplos:</strong> Inclua trechos de código ou referências visuais. Exemplo: <code>"Baseie o menu em &lt;nav&gt; com botões de 160px."</code></li>
-                    <li><strong>Especifique Responsividade:</strong> Exemplo: <code>"Garanta que o menu vire horizontal em telas menores que 768px."</code></li>
-                    <li><strong>Peça Validação:</strong> Exemplo: <code>"Verifique se o código segue HTML5 e CSS3 válidos."</code></li>
-                    <li><strong>Combine Estilo e Funcionalidade:</strong> Exemplo: <code>"Adicione um menu com hover vermelho e clique interativo via JavaScript."</code></li>
-                </ul>
-                <p><strong>Exemplo Avançado:</strong> <code>"Crie um site responsivo em HTML/CSS com um menu que se torna horizontal em telas menores que 768px, usando a paleta #B22222."</code></p>
-                <div class="visual">
-                    Visual: Fluxograma mostrando o processo iterativo: "Tarefa" → "Prompt" → "Código" → "Teste" → "Ajuste" (com setas de retorno para ajustes).
-                </div>
-            </section>
-
-            <section id="slide12">
-                <h2>Exemplo: Anatomia de um Prompt</h2>
-                <p>Analisemos um prompt completo para entender seus componentes:</p>
-                <p><strong>Prompt:</strong> <code>"Crie um site em HTML/CSS com menu lateral, conteúdo à direita, rodapé fixo, usando a paleta do logo em https://www.fiec.com.br/site/imgs/logo-fiec-vermelho.png."</code></p>
-                <h3>Análise:</h3>
-                <ul>
-                    <li><strong>Tecnologia:</strong> HTML/CSS – define as linguagens a serem usadas.</li>
-                    <li><strong>Estrutura:</strong> Menu lateral, conteúdo à direita, rodapé fixo – descreve o layout.</li>
-                    <li><strong>Estilo:</strong> Paleta baseada no logo – especifica o design visual.</li>
-                </ul>
-                <p><strong>Dica:</strong> Sempre divida seu prompt em tecnologia, estrutura e estilo para garantir clareza.</p>
-                <div class="visual">
-                    Visual: Prompt anotado com setas apontando para "Tecnologia" (ícone de código), "Estrutura" (ícone de layout) e "Estilo" (ícone de paleta de cores).
-                </div>
-            </section>
-
-            <section id="slide13">
-                <h2>Atividade Prática</h2>
-                <p><strong>Tarefa:</strong> Crie o site da apostila usando os prompts fornecidos, seguindo estas etapas:</p>
-                <ol>
-                    <li>Crie um arquivo <code>index.html</code> em um editor de texto (ex.: VS Code).</li>
-                    <li>Use os prompts para gerar o cabeçalho, menu, conteúdo e rodapé, um de cada vez.</li>
-                    <li>Teste cada parte no navegador para verificar o layout e interações.</li>
-                    <li>Ajuste com prompts específicos, como <code>"Adicione espaçamento de 100px entre o menu e o cabeçalho."</code></li>
-                    <li><strong>Desafio:</strong> Adicione uma nova seção com o prompt: <code>"Crie uma seção sobre ferramentas de IA recomendadas, com título vermelho e uma lista de ferramentas."</code></li>
-                </ol>
-                <p><strong>Exemplo de Código do Desafio:</strong></p>
-                <pre>
-&lt;section id="ferramentas-ia"&gt;
-    &lt;h2 style="color: #B22222;"&gt;Ferramentas de IA Recomendadas&lt;/h2&gt;
-    &lt;ul&gt;
-        &lt;li&gt;Grok: Criação de código e respostas técnicas.&lt;/li&gt;
-        &lt;li&gt;ChatGPT: Geração de texto e ideias.&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-                </pre>
-                <p><strong>Dica:</strong> Use a apostila como referência e experimente criar seus próprios prompts para personalizar o site.</p>
-                <div class="visual">
-                    Visual: Lista de verificação com ícones para cada etapa: um arquivo para "Criar index.html", um pincel para "Gerar componentes", um monitor para "Testar", uma engrenagem para "Ajustar", e uma estrela para o "Desafio".
-                </div>
-            </section>
-
-            <section id="slide14">
-                <h2>Dicas para Solução de Problemas</h2>
-                <p>Se algo não funcionar, siga estas dicas para identificar e corrigir problemas:</p>
-                <ul>
-                    <li><strong>Código Não Funciona:</strong> Verifique a sintaxe, como tags HTML não fechadas ou erros em CSS/JavaScript. Exemplo: Certifique-se de que <code>&lt;/div&gt;</code> está presente para cada <code>&lt;div&gt;</code>.</li>
-                    <li><strong>Layout Errado:</strong> Ajuste com prompts específicos, como <code>"Corrija o alinhamento do menu para ficar à esquerda."</code></li>
-                    <li><strong>IA Não Entende:</strong> Reformule o prompt com mais detalhes. Exemplo: Em vez de <code>"Melhore o menu"</code>, use <code>"Adicione bordas vermelhas de 1px aos botões do menu."</code></li>
-                    <li><strong>Teste Sempre:</strong> Use a ferramenta de inspeção do navegador (F12) to identify CSS or JavaScript errors.</li>
-                    <li><strong>Exemplo de Correção:</strong> If the menu isn't scrollable, add <code>"Add overflow-y: auto to the menu."</code></li>
-                </ul>
-                <div class="visual">
-                    Visual: Flowchart showing the troubleshooting process: "Problema" (alert icon) → "Verificar" (magnifying glass icon) → "Ajustar" (tool icon) → "Testar" (monitor icon).
-                </div>
-            </section>
-
-            <section id="slide15">
-                <h2>Conclusão</h2>
-                <p><strong>O que você aprendeu:</strong></p>
-                <ul>
-                    <li>Criar prompts eficazes para IA, especificando tecnologias, estrutura e estilo.</li>
-                    <li>Desenvolver um site completo com HTML, CSS e JavaScript, incluindo interações como hover e clique.</li>
-                    <li>Iterar sobre resultados da IA e solucionar problemas comuns.</li>
-                    <li>Aplicar boas práticas para prompts e testes no navegador.</li>
-                </ul>
-                <p><strong>Próximos Passos:</strong></p>
-                <ul>
-                    <li>Experimente criar outros sites com prompts, como um blog ou portfólio.</li>
-                    <li>Explore frameworks como React usando prompts de IA. Exemplo: <code>"Crie um componente React para um menu."</code></li>
-                    <li>Continue praticando com a apostila para dominar a criação de prompts.</li>
-                </ul>
-                <p><strong>Dica Final:</strong> A prática constante com prompts e testes no navegador é a chave para se tornar proficiente em desenvolvimento web com IA.</p>
-                <div class="visual">
-                    Visual: Imagem do site completo, mostrando o cabeçalho, menu lateral, conteúdo principal e rodapé, com destaque para a paleta vermelha (#B22222).
-                </div>
-            </section>
-        </main>
-    </div>
+    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2025 Luciano Pereira. Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Roteiro do Projeto: Passo a Passo do Módulo Web</h5>
+                    <p>Um guia completo para criar experiências de aprendizagem digitais eficazes.</p>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2023 Roteiro do Projeto Web. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Remove 'clicked' class from all menu items and add to the clicked one
-        document.querySelectorAll('.menu a').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.menu a').forEach(link => link.classList.remove('clicked'));
-                item.classList.add('clicked');
+        // Script para FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Script para suavizar a rolagem ao clicar nos links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
