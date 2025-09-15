@@ -115,45 +115,78 @@
             margin-bottom: 20px;
         }
         
-        .gallery-item {
+        .etapa-item {
             overflow: hidden;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        .gallery-item img {
+        .etapa-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .etapa-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .etapa-item:hover img {
+            transform: scale(1.05);
         }
         
-        .gallery-overlay {
+        .etapa-overlay {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(44, 62, 80, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-overlay i {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
             color: white;
-            font-size: 2rem;
+        }
+        
+        .etapa-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .etapa-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+        }
+        
+        .btn-close {
+            filter: invert(1);
+        }
+        
+        .modal-body h4 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body ul {
+            padding-left: 20px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 10px;
         }
         
         .faq-item {
@@ -266,7 +299,7 @@
                         <a class="nav-link" href="#descricao">Descrição</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#galeria">Galeria</a>
+                        <a class="nav-link" href="#etapas">Etapas do Projeto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#faq">FAQ</a>
@@ -473,62 +506,318 @@
         </div>
     </section>
 
-    <!-- Galeria de Imagens -->
-    <section id="galeria" class="section-padding">
+    <!-- Etapas do Projeto em Destaque -->
+    <section id="etapas" class="section-padding">
         <div class="container">
-            <h2 class="section-title">Galeria de Imagens</h2>
+            <h2 class="section-title">Etapas do Projeto em Destaque</h2>
+            <p class="text-center mb-5">Clique em cada etapa para conhecer mais detalhes sobre o processo de desenvolvimento do seu módulo web.</p>
+            
             <div class="row">
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Planejamento">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa1">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="A Ideia">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 1: A Ideia</div>
+                            <div class="etapa-subtitle">Escolha do tema e planejamento</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Desenvolvimento">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa2">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="A Caçada de Conteúdo">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 2: A Caçada de Conteúdo</div>
+                            <div class="etapa-subtitle">Encontrando recursos relevantes</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Resultado">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa3">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="O Blueprint da Página">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 3: O Blueprint da Página</div>
+                            <div class="etapa-subtitle">Planejamento visual do layout</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Estrutura">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa4">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="A Fundação">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 4: A Fundação</div>
+                            <div class="etapa-subtitle">Estrutura básica e texto</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Construção">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa5">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="A Interatividade">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 5: A Interatividade</div>
+                            <div class="etapa-subtitle">Mídias e atividades interativas</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Finalização">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="etapa-item" data-bs-toggle="modal" data-bs-target="#modalEtapa6">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="O Polimento e a Entrega">
+                        <div class="etapa-overlay">
+                            <div class="etapa-title">Aula 6: O Polimento e a Entrega</div>
+                            <div class="etapa-subtitle">Revisão final e apresentação</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal Etapa 1 -->
+    <div class="modal fade" id="modalEtapa1" tabindex="-1" aria-labelledby="modalEtapa1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa1Label">Aula 1: A Ideia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nesta primeira aula, você irá definir as bases do seu projeto. É o momento de transformar uma ideia abstrata em um plano concreto.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Escolher um tema específico e relevante para o seu módulo</li>
+                        <li>Definir o público-alvo da sua apresentação</li>
+                        <li>Criar um rascunho da estrutura com 3 seções principais</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>Escolha do Tema:</strong> Pense em algo que você goste e tenha conhecimento. Evite temas muito amplos. Por exemplo, em vez de "química", escolha algo mais específico como "Como uma vela acende?".</li>
+                        <li><strong>Público-Alvo:</strong> Imagine para quem você está fazendo a apresentação. Isso ajudará a definir a linguagem e a profundidade do conteúdo. Por exemplo: "Vou fazer para alguém que nunca andou de bicicleta e quer entender o básico antes de começar."</li>
+                        <li><strong>Rascunho da Estrutura:</strong> Desenhe 3 caixas em uma folha de papel e escreva nelas os títulos das principais seções do seu módulo. Por exemplo: "O que é uma bicicleta?", "Como ela se move?", e "Quiz Rápido".</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Escolha um tema que você realmente tenha interesse, isso tornará o processo mais prazeroso</li>
+                        <li>Seja específico ao definir o público-alvo - isso guiará suas escolhas de conteúdo e linguagem</li>
+                        <li>Não se preocupe com perfeição no rascunho inicial, o objetivo é apenas organizar as ideias</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Etapa 2 -->
+    <div class="modal fade" id="modalEtapa2" tabindex="-1" aria-labelledby="modalEtapa2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa2Label">Aula 2: A Caçada de Conteúdo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Com o tema definido, agora é hora de encontrar e reunir todo o material que você vai usar no seu módulo. Esta etapa é crucial para enriquecer seu conteúdo com diferentes tipos de mídia.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Encontrar um vídeo relevante sobre o tema escolhido</li>
+                        <li>Selecionar uma imagem que ilustre bem o conteúdo</li>
+                        <li>Identificar pelo menos dois links confiáveis para aprofundamento</li>
+                        <li>Planejar uma atividade interativa para o módulo</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>O Vídeo:</strong> Vá ao YouTube e encontre um vídeo simples sobre seu tema. Copie o link para incorporá-lo posteriormente. Por exemplo: "Link para um vídeo de 'Como trocar a corrente da bicicleta'."</li>
+                        <li><strong>A Imagem:</strong> Procure uma imagem que combine com o seu tema e ajude a ilustrar o conteúdo. Pode ser uma foto ou um diagrama. Por exemplo: "Uma foto de um ciclista em movimento ou um diagrama das engrenagens da bicicleta."</li>
+                        <li><strong>Os Links de Aprofundamento:</strong> Encontre pelo menos dois sites ou artigos confiáveis que ofereçam informações complementares. Copie os links para incluir no seu módulo. Por exemplo: "Link para um blog de ciclismo sobre 'componentes básicos da bicicleta' e para um artigo de jornal sobre 'a história da bicicleta'."</li>
+                        <li><strong>A Ideia do Interativo:</strong> Decida como será sua atividade interativa. Pode ser um quiz, um questionário ou outra forma de interação. Por exemplo: "Vou fazer um quiz com 3 perguntas de múltipla escolha para testar se a pessoa entendeu os nomes das partes da bicicleta."</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Verifique sempre a qualidade e a confiabilidade das fontes que você encontra</li>
+                        <li>Salve todos os links em um local seguro para não perdê-los</li>
+                        <li>Pense em como os diferentes elementos (vídeo, imagem, links) se complementarão no seu módulo</li>
+                        <li>A atividade interativa deve ser relevante e testar o conhecimento adquirido</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Etapa 3 -->
+    <div class="modal fade" id="modalEtapa3" tabindex="-1" aria-labelledby="modalEtapa3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa3Label">Aula 3: O Blueprint da Página</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nesta aula, você irá organizar todo o material coletado e planejar onde cada elemento será posicionado na sua página. É como criar um mapa ou blueprint do seu módulo antes de começar a construir.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Organizar todas as anotações e materiais coletados</li>
+                        <li>Elaborar um rascunho detalhado do layout da página</li>
+                        <li>Definir a posição exata de cada elemento (texto, imagens, vídeos, links)</li>
+                        <li>Preparar a entrega do plano de projeto</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>Organize suas Anotações:</strong> Releia todo o texto que você vai escrever e organize as informações de forma lógica. Verifique se está tudo claro e coerente.</li>
+                        <li><strong>O Rascunho Detalhado:</strong> Volte ao seu desenho da Aula 1 e escreva nele exatamente onde cada item vai ficar. Seja específico sobre a posição de cada elemento. Por exemplo: "Na seção 'O que é?', vou colocar o título, o parágrafo de introdução, a imagem e o vídeo. Na seção 'Como funciona?', vou colocar um texto mais detalhado e os dois links externos."</li>
+                        <li><strong>Prepare a Entrega:</strong> Reúna todas as informações que você organizou em um único documento. Este será seu plano de projeto, que servirá como guia para a fase de construção.</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Pense na experiência do usuário - como as pessoas irão navegar pelo seu conteúdo?</li>
+                        <li>Considere a hierarquia visual - o que é mais importante e deve chamar mais atenção?</li>
+                        <li>Planeje o fluxo lógico de informações - uma seção deve levar naturalmente à próxima</li>
+                        <li>Seja detalhado no blueprint - isso facilitará muito a fase de construção</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Etapa 4 -->
+    <div class="modal fade" id="modalEtapa4" tabindex="-1" aria-labelledby="modalEtapa4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa4Label">Aula 4: A Fundação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Agora começamos a fase de construção! Nesta aula, você irá montar a estrutura básica da sua página web e adicionar todo o texto que planejou. É o momento de colocar a mão na massa.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Criar a estrutura básica da página web</li>
+                        <li>Adicionar todo o texto planejado nas seções correspondentes</li>
+                        <li>Organizar o conteúdo de forma clara e legível</li>
+                        <li>Verificar a estrutura geral antes de adicionar elementos multimídia</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>Comece a Construir:</strong> Crie a sua página web usando a plataforma indicada pelo seu professor. Pode ser um construtor de sites como WordPress, Wix, Google Sites, ou até mesmo código HTML/CSS se você tiver conhecimento.</li>
+                        <li><strong>Adicione o Texto:</strong> Digite todo o texto que você escreveu para as suas seções. Siga o blueprint que você criou na Aula 3. Sua página deve ter os títulos principais e os parágrafos de texto, como se fosse um documento Word.</li>
+                        <li><strong>Organize as Seções:</strong> Certifique-se de que cada seção esteja claramente definida e que o texto esteja bem formatado. Use negrito, itálico e listas quando apropriado para melhorar a legibilidade.</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Salve seu trabalho frequentemente para não perder nada</li>
+                        <li>Revise o texto para corrigir erros de gramática e digitação</li>
+                        <li>Certifique-se de que a estrutura está de acordo com o planejado</li>
+                        <li>Não se preocupe ainda com a aparência final - o importante é ter todo o texto no lugar certo</li>
+                        <li>Teste a visualização em diferentes dispositivos para garantir que o texto seja legível em todos</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Etapa 5 -->
+    <div class="modal fade" id="modalEtapa5" tabindex="-1" aria-labelledby="modalEtapa5Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa5Label">Aula 5: A Interatividade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nesta aula, você irá tornar seu módulo muito mais dinâmico e envolvente ao adicionar todos os elementos multimídia e criar a atividade interativa que planejou.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Inserir o vídeo e a imagem nas seções corretas</li>
+                        <li>Adicionar os links externos para aprofundamento</li>
+                        <li>Construir a atividade interativa (quiz, questionário, etc.)</li>
+                        <li>Testar todos os elementos interativos para garantir que funcionem corretamente</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>Coloque a Imagem e o Vídeo:</strong> Insira o vídeo e a imagem que você encontrou na Aula 2 nas seções corretas da sua página. Posicione-os de forma a complementar o texto e não sobrecarregar a visualização.</li>
+                        <li><strong>Adicione os Links:</strong> Coloque os links externos na sua página. Você pode criar uma seção específica para "Saiba Mais" ou "Recursos Adicionais" onde os usuários possam encontrar mais informações sobre o tema.</li>
+                        <li><strong>Construa a Atividade:</strong> Crie sua atividade interativa conforme planejado. Para um quiz, adicione as perguntas e as opções de resposta. Você precisará de um botão para verificar o resultado. Exemplo: "O que a corrente da bicicleta faz? a) Freia a roda. b) Conecta os pedais à roda."</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Verifique se todos os links estão funcionando corretamente</li>
+                        <li>Teste o vídeo em diferentes navegadores para garantir compatibilidade</li>
+                        <li>Para a atividade interativa, pense em como dar feedback ao usuário (mensagem de "Correto!" ou "Incorreto!")</li>
+                        <li>Se possível, peça para alguém testar seu módulo e dar feedback sobre a experiência</li>
+                        <li>Lembre-se que os elementos interativos devem complementar o conteúdo, não distrair dele</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Etapa 6 -->
+    <div class="modal fade" id="modalEtapa6" tabindex="-1" aria-labelledby="modalEtapa6Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEtapa6Label">Aula 6: O Polimento e a Entrega</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Esta é a última aula do projeto! Aqui, você irá fazer os ajustes finais, revisar tudo e preparar seu projeto para a entrega final. É o momento de garantir que tudo esteja perfeito.</p>
+                    
+                    <h4>Objetivos da Aula</h4>
+                    <ul>
+                        <li>Fazer uma revisão completa do conteúdo e do design</li>
+                        <li>Testar o módulo em diferentes dispositivos e navegadores</li>
+                        <li>Preparar o relatório de conclusão do projeto</li>
+                        <li>Organizar todos os arquivos para entrega</li>
+                    </ul>
+                    
+                    <h4>Passos Detalhados</h4>
+                    <ul>
+                        <li><strong>Revisão Final:</strong> Leia tudo novamente para conferir se não há erros. Verifique ortografia, gramática, funcionamento dos links, vídeos e atividades interativas. Peça para um colega ou amigo revisar também - outra perspectiva pode ajudar a identificar problemas que você não percebeu.</li>
+                        <li><strong>Teste em Outros Aparelhos:</strong> Veja como sua página se comporta em telas de celular, tablet e diferentes navegadores (Chrome, Firefox, Safari, etc.). Verifique se o layout é responsivo e se todos os elementos funcionam corretamente em todos os dispositivos.</li>
+                        <li><strong>Prepare o Relatório:</strong> Crie um arquivo de texto para "contar a história do seu projeto". Inclua um resumo do que você fez, os desafios que enfrentou e como os superou, e uma reflexão sobre o que aprendeu durante o processo.</li>
+                    </ul>
+                    
+                    <h4>Dicas Importantes</h4>
+                    <ul>
+                        <li>Não se esqueça de verificar a acessibilidade do seu módulo - cores contrastantes, texto legível, etc.</li>
+                        <li>No relatório, seja honesto sobre os desafios - isso mostra seu processo de aprendizagem</li>
+                        <li>Organize todos os arquivos em uma pasta bem estruturada para facilitar a entrega</li>
+                        <li>Se possível, faça uma apresentação final do seu projeto para a turma</li>
+                        <li>Celebre sua conquista! Completar este projeto é um grande aprendizado</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FAQs -->
     <section id="faq" class="section-padding bg-light">
